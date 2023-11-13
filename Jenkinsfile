@@ -9,16 +9,15 @@ pipeline {
 
 		stage('OWASP DependencyCheck') {
 			steps {
-
-        		dependencyCheck additionalArguments: ''' 
-                    -o './'
-                    -s './'
-                    -f 'ALL' 
-                    --prettyPrint''', odcInstallation: 'OWASP Dependency-Check Vulnerabilities'
-        
-        		dependencyCheckPublisher pattern: 'dependency-check-report.xml'
-			}
-		}
+				dependencyCheck additionalArguments: ''' 
+							-o './'
+							-s './'
+							-f 'ALL' 
+							--prettyPrint''', odcInstallation: 'OWASP Dependency-Check Vulnerabilities'
+				
+				dependencyCheckPublisher pattern: 'dependency-check-report.xml'
+      }
+    }
 	}	
 	post {
 		success {
